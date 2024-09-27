@@ -1,0 +1,54 @@
+:root {
+    --primary-color: hsl(180, 100%, 25%);
+    --border-color: #ddd;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body, html {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+    background-color: #222222;
+    color: #ccc;
+}
+
+h1 {
+    color: var(--primary-color);
+}
+
+a {
+    color: hsl(201, 100%, 80%);
+    &:visited {
+        color: hsl(255, 94%, 80%);
+    }
+}
+
+.blog-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 60px;
+    padding: 0 16px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.blog-navigation {
+    ul {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        height: 100%;
+    }
+}
+
+.blog-content {
+    padding: 16px;
+}

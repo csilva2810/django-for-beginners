@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog {% block title %}{% endblock %}</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+<body>
+    <header class="blog-header">
+        <a href="{% url 'home' %}">Blog</a>
+        <nav class="blog-navigation">
+            <ul>
+                {% if user.is_authenticated %}
+                <li>
+                    Hi {{ user.username }}!
+                </li>
+                <li>
+                    <a href="{% url 'post_create' %}">+ Create a Post</a>
+                </li>
+                <li>
+                    <form method="POST" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type="submit">Logout</button>
+                    </form>
+                </li>
+                {% else %}
+                <li>
+                    <a href="{% url 'login' %}">Log In.</a>
+                </li>
+                <li>
+                    <a href="{% url 'signup' %}">Sign up.</a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <main class="blog-content">
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

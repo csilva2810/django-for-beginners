@@ -1,0 +1,22 @@
+<style>
+    html, body {
+        background-color: #313131;
+        color: #e1e1e1;
+        font-family: sans-serif;
+    }
+
+    a {
+        color: cornflowerblue;
+
+        &:visited {
+            color: mediumpurple;
+        }
+    }
+</style>
+
+<header>
+    <a href="{% url 'home' %}">Home</a> |
+    <a href="{% url 'about' %}">About</a>
+</header>
+
+{% block content %}{% endblock %}

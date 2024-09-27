@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Welcome to the Blog!</h1>
+
+<ul>
+    {% for post in post_list %}
+    <li>
+        <p>
+            {{ post.title }} <strong>by {{ post.author.get_full_name|default:post.author.username }}</strong>
+        </p>
+        <a href="{{ post.get_absolute_url }}">Read</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
