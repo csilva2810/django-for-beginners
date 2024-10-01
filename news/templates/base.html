@@ -7,33 +7,33 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0"
     >
-    <title>Document</title>
+    <title>{% block title %}Newspaper App{% endblock %}</title>
   </head>
 
   <body>
     <header>
-      <nav
-        class="test"
-        id="test"
-        style="display: flex; align-items: center; justify-content: center"
-        aria-activedescendant="test"
-        aria-atomic="true"
-        aria-autocomplete="both"
-        aria-busy="true"
-      >
+      <nav style="display: flex; align-items: center; justify-content: center">
         <ul>
           <li>
-            <a
-              href="http://test.carlos.silva.com.br/test1/test2/test3/test4.html"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Visit the website now!
-            </a>
+            <a href="{% url 'login' %}">Login</a>
           </li>
+          <li>
+            <a href="{% url 'signup' %}">Signup</a>
+          </li>
+          {% if user.is_authenticated %}
+          <li>
+            <form action="{% url 'login' %}" method="post">
+              {% csrf_token %}
+              <button type="submit">Log out</button>
+            </form>
+          </li>
+          {% endif %}
         </ul>
       </nav>
     </header>
+
+    {% block content %}
+    {% endblock %}
   </body>
 
 </html>
