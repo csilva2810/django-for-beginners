@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>{{ article.title }}</h2>
+
+<p>{{ article.author.username }} ({{ article.date }})</p>
+
+{{ article.body }}
+
+<div>
+    <a href="{% url "article_edit" article.pk %}" class="btn btn-info">
+        Edit article
+    </a>
+    <a href="{% url "article_delete" article.pk %}" class="btn btn-danger">
+        Delete article
+    </a>
+    <a href="{% url "article_list" %}" class="btn btn-default">
+        Back to list
+    </a>
+</div>
+
+{% endblock %}
