@@ -9,12 +9,14 @@
 {{ article.body }}
 
 <div>
+    {% if article.author.pk == request.user.pk %}
     <a href="{% url "article_edit" article.pk %}" class="btn btn-info">
         Edit article
     </a>
     <a href="{% url "article_delete" article.pk %}" class="btn btn-danger">
         Delete article
     </a>
+    {% endif %}
     <a href="{% url "article_list" %}" class="btn btn-default">
         Back to list
     </a>

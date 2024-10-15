@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load articles_tags %}
+
 {% block title %}Articles{% endblock %}
 
 {% block content %}
@@ -20,8 +22,11 @@
           {{ article.body }}
         </div>
         <div class="card-footer text-center text-muted">
+          {% is_article_owner as article_owner %}
+          {% if article_owner %}
           <a href="{% url 'article_edit' article.pk %}">Edit</a>
           <a href="{% url 'article_delete' article.pk %}">Delete</a>
+          {% endif %}
         </div>
     </div>
     <br />
