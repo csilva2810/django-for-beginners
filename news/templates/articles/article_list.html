@@ -18,15 +18,29 @@
             by {{ article.author }} | {{ article.date }}
           </span>
         </div>
+
         <div class="card-body">
           {{ article.body }}
+
+          <p>
+            {% is_article_owner as article_owner %}
+            {% if article_owner %}
+            <a href="{% url 'article_edit' article.pk %}">Edit</a>
+            <a href="{% url 'article_delete' article.pk %}">Delete</a>
+            {% endif %}
+            <a href="{{ article.get_absolute_url }}">Add comment</a>
+          </p>
         </div>
-        <div class="card-footer text-center text-muted">
-          {% is_article_owner as article_owner %}
-          {% if article_owner %}
-          <a href="{% url 'article_edit' article.pk %}">Edit</a>
-          <a href="{% url 'article_delete' article.pk %}">Delete</a>
-          {% endif %}
+
+        <div class="card-footer text-muted">
+          {% for comment in article.comment_set.all %}
+          <p>
+            <span class="fw-bold">
+              {{ comment.author }} &middot;
+            </span>
+            {{ comment }}
+          </p>
+          {% endfor %}
         </div>
     </div>
     <br />
